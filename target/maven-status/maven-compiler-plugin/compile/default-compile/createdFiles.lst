@@ -1,0 +1,6 @@
+uni\cs\tradingclient\model\User.class
+uni\cs\tradingclient\dao\implementation\UserDAO.class
+uni\cs\tradingclient\logic\Game.class
+uni\cs\tradingclient\logic\Main.class
+uni\cs\tradingclient\dao\service\UserService.class
+uni\cs\tradingclient\persistence\CommunicationHandler.class
