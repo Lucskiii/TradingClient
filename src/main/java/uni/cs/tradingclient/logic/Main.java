@@ -1,6 +1,6 @@
 package uni.cs.tradingclient.logic;
 
-import uni.cs.tradingclient.model.User;
+import uni.cs.tradingclient.model.*;
 
 /**
  *
@@ -13,6 +13,10 @@ public class Main {
         
         for (User user : game.getUsers()) {
             System.out.println("Name: " + user.getFirstname() + " " + user.getLastname());
+        }
+        
+        for (Stock stock : game.getStocks()) {
+            System.out.println("Name: " + stock.getName());
         }
     }
     
