@@ -20,7 +20,7 @@ public class TransactionDAO {
 
     public List<Transaction> getAllTransactions() {
         List<Transaction> transactions = new ArrayList<>();
-        List<Map<String, Object>> data = handler.executeQuery("SELECT * FROM Transaction");
+        List<Map<String, Object>> data = handler.executeQuery("SELECT * FROM Transactions");
 
         for (Map<String, Object> map : data) {
             Transaction transaction = new Transaction(

@@ -20,7 +20,7 @@ public class StockDAO {
 
     public List<Stock> getAllStocks() {
         List<Stock> stocks = new ArrayList<>();
-        List<Map<String, Object>> data = handler.executeQuery("SELECT * FROM Stock");
+        List<Map<String, Object>> data = handler.executeQuery("SELECT * FROM Stocks");
 
         for (Map<String, Object> map : data) {
             Stock stock = new Stock(
@@ -34,7 +34,7 @@ public class StockDAO {
     }
 
     public Stock getStockByISIN(String isin) {
-        List<Map<String, Object>> data = handler.executeQuery("SELECT * FROM Stock WHERE ISIN = ?", isin);
+        List<Map<String, Object>> data = handler.executeQuery("SELECT * FROM Stocks WHERE ISIN = ?", isin);
         if (data.isEmpty()) {
             return null;
         }

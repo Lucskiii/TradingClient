@@ -20,7 +20,7 @@ public class PortfolioDAO {
 
     public List<Portfolio> getAllPortfolios() {
         List<Portfolio> portfolios = new ArrayList<>();
-        List<Map<String, Object>> data = handler.executeQuery("SELECT * FROM Portfolio");
+        List<Map<String, Object>> data = handler.executeQuery("SELECT * FROM Portfolios");
 
         for (Map<String, Object> map : data) {
             Portfolio portfolio = new Portfolio(
