@@ -1,6 +1,15 @@
+C:\Users\lucak\OneDrive\Dokumente\NetBeansProjects\TradingClient\src\main\java\uni\cs\tradingclient\dao\implementation\PortfolioDAO.java
+C:\Users\lucak\OneDrive\Dokumente\NetBeansProjects\TradingClient\src\main\java\uni\cs\tradingclient\dao\implementation\StockDAO.java
+C:\Users\lucak\OneDrive\Dokumente\NetBeansProjects\TradingClient\src\main\java\uni\cs\tradingclient\dao\implementation\TransactionDAO.java
 C:\Users\lucak\OneDrive\Dokumente\NetBeansProjects\TradingClient\src\main\java\uni\cs\tradingclient\dao\implementation\UserDAO.java
+C:\Users\lucak\OneDrive\Dokumente\NetBeansProjects\TradingClient\src\main\java\uni\cs\tradingclient\dao\service\PortfolioService.java
+C:\Users\lucak\OneDrive\Dokumente\NetBeansProjects\TradingClient\src\main\java\uni\cs\tradingclient\dao\service\StockService.java
+C:\Users\lucak\OneDrive\Dokumente\NetBeansProjects\TradingClient\src\main\java\uni\cs\tradingclient\dao\service\TransactionService.java
 C:\Users\lucak\OneDrive\Dokumente\NetBeansProjects\TradingClient\src\main\java\uni\cs\tradingclient\dao\service\UserService.java
 C:\Users\lucak\OneDrive\Dokumente\NetBeansProjects\TradingClient\src\main\java\uni\cs\tradingclient\logic\Game.java
 C:\Users\lucak\OneDrive\Dokumente\NetBeansProjects\TradingClient\src\main\java\uni\cs\tradingclient\logic\Main.java
+C:\Users\lucak\OneDrive\Dokumente\NetBeansProjects\TradingClient\src\main\java\uni\cs\tradingclient\model\Portfolio.java
+C:\Users\lucak\OneDrive\Dokumente\NetBeansProjects\TradingClient\src\main\java\uni\cs\tradingclient\model\Stock.java
+C:\Users\lucak\OneDrive\Dokumente\NetBeansProjects\TradingClient\src\main\java\uni\cs\tradingclient\model\Transaction.java
 C:\Users\lucak\OneDrive\Dokumente\NetBeansProjects\TradingClient\src\main\java\uni\cs\tradingclient\model\User.java
 C:\Users\lucak\OneDrive\Dokumente\NetBeansProjects\TradingClient\src\main\java\uni\cs\tradingclient\persistence\CommunicationHandler.java

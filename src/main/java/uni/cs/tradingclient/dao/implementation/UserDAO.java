@@ -20,7 +20,7 @@ public class UserDAO {
 
     public List<User> getAllUsers() {
         List<User> users = new ArrayList<>();
-        List<Map<String, Object>> data = handler.executeQuery("SELECT * FROM User");
+        List<Map<String, Object>> data = handler.executeQuery("SELECT * FROM Users");
 
         for (Map<String, Object> map : data) {
             User user = new User(
