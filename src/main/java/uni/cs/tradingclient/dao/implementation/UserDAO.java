@@ -26,7 +26,6 @@ public class UserDAO {
             User user = new User(
                     (Integer) map.get("User_ID"),
                     (String) map.get("Email"),
-                    (String) map.get("IBAN"),
                     (String) map.get("FirstName"),
                     (String) map.get("LastName")
             );
@@ -44,7 +43,6 @@ public class UserDAO {
         return new User(
                 (Integer) map.get("User_ID"),
                 (String) map.get("Email"),
-                (String) map.get("IBAN"),
                 (String) map.get("FirstName"),
                 (String) map.get("LastName")
         );
@@ -52,12 +50,12 @@ public class UserDAO {
 
     public boolean saveUser(User user) {
         String sql = "INSERT INTO User (Email, IBAN, FirstName, LastName) VALUES (?, ?, ?, ?)";
-        return handler.executeUpdate(sql, user.getEmail(), user.getIban(), user.getFirstname(), user.getLastname());
+        return handler.executeUpdate(sql, user.getEmail(), user.getFirstname(), user.getLastname());
     }
 
     public boolean updateUser(User user) {
         String sql = "UPDATE User SET Email = ?, IBAN = ?, FirstName = ?, LastName = ? WHERE User_ID = ?";
-        return handler.executeUpdate(sql, user.getEmail(), user.getIban(), user.getFirstname(), user.getLastname(), user.getUserID());
+        return handler.executeUpdate(sql, user.getEmail(), user.getFirstname(), user.getLastname(), user.getUserID());
     }
 
     public boolean deleteUser(int userId) {
