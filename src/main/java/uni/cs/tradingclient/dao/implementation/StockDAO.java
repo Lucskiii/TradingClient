@@ -4,18 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import uni.cs.tradingclient.model.Stock;
-import uni.cs.tradingclient.persistence.CommunicationHandler;
+import uni.cs.tradingclient.persistence.ReferencedBy;
 
 /**
  *
  * @author lucakoelzsch
  */
-public class StockDAO {
-
-    private CommunicationHandler handler;
+@ReferencedBy(table = "Transaction", column = "ISIN")
+public class StockDAO extends AbstractDAO {
 
     public StockDAO() {
-        handler = new CommunicationHandler();
     }
 
     public List<Stock> getAllStocks() {
@@ -59,5 +57,15 @@ public class StockDAO {
     public boolean deleteStock(String isin) {
         String sql = "DELETE FROM Stock WHERE ISIN = ?";
         return handler.executeUpdate(sql, isin);
+    }
+
+    @Override
+    protected String getTableName() {
+        return "Stocks";
+    }
+
+    @Override
+    protected String getPrimaryKeyColumnName() {
+        return "ISIN";
     }
 }

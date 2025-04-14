@@ -4,18 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import uni.cs.tradingclient.model.Portfolio;
-import uni.cs.tradingclient.persistence.CommunicationHandler;
+import uni.cs.tradingclient.persistence.ReferencedBy;
 
 /**
  *
  * @author lucakoelzsch
  */
-public class PortfolioDAO {
-
-    private CommunicationHandler handler;
+@ReferencedBy(table = "Transaction", column = "Portfolio_ID")
+public class PortfolioDAO extends AbstractDAO {
 
     public PortfolioDAO() {
-        handler = new CommunicationHandler();
     }
 
     public List<Portfolio> getAllPortfolios() {
@@ -59,5 +57,15 @@ public class PortfolioDAO {
     public boolean deletePortfolio(int portfolioID) {
         String sql = "DELETE FROM Portfolio WHERE Portfolio_ID = ?";
         return handler.executeUpdate(sql, portfolioID);
+    }
+
+    @Override
+    protected String getTableName() {
+        return "Portfolios";
+    }
+
+    @Override
+    protected String getPrimaryKeyColumnName() {
+        return "Portfolio_ID";
     }
 }

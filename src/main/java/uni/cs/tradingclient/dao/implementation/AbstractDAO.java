@@ -1,5 +1,6 @@
 package uni.cs.tradingclient.dao.implementation;
 
+import uni.cs.tradingclient.persistence.CommunicationHandler;
 import uni.cs.tradingclient.persistence.ForeignKeyRegistry;
 
 /**
@@ -8,11 +9,17 @@ import uni.cs.tradingclient.persistence.ForeignKeyRegistry;
  */
 public abstract class AbstractDAO {
 
+    protected CommunicationHandler handler;
     protected abstract String getTableName();
 
     protected abstract String getPrimaryKeyColumnName();
 
-    // Diese Methode muss von der konkreten DAO aufgerufen werden, bevor DELETE passiert
+    public AbstractDAO() {
+        handler = new CommunicationHandler();
+    }
+
+    
+    
     protected boolean canDelete(Object id) {
         String table = getTableName();
         String column = getPrimaryKeyColumnName();
@@ -24,8 +31,5 @@ public abstract class AbstractDAO {
 
         return true;
     }
-
-    // Optional: du kannst hier auch direkt ein delete() Template implementieren
-    public abstract boolean delete(Object id);
 
 }

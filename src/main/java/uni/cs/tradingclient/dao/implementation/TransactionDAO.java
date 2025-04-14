@@ -4,18 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import uni.cs.tradingclient.model.Transaction;
-import uni.cs.tradingclient.persistence.CommunicationHandler;
+import uni.cs.tradingclient.persistence.ReferencedBy;
 
 /**
  *
  * @author lucakoelzsch
  */
-public class TransactionDAO {
+@ReferencedBy(table = "Transaction", column = "ISIN")
+public class TransactionDAO extends AbstractDAO {
 
-    private CommunicationHandler handler;
 
     public TransactionDAO() {
-        handler = new CommunicationHandler();
     }
 
     public List<Transaction> getAllTransactions() {
@@ -63,6 +62,16 @@ public class TransactionDAO {
     public boolean deleteTransaction(int transactionID) {
         String sql = "DELETE FROM Transaction WHERE Transaction_ID = ?";
         return handler.executeUpdate(sql, transactionID);
+    }
+
+    @Override
+    protected String getTableName() {
+        return "Transactions";
+    }
+
+    @Override
+    protected String getPrimaryKeyColumnName() {
+        return "Transaction_ID";
     }
 }
 

@@ -16,7 +16,7 @@ public @interface ReferencedBy {
 
     String column();
 
-    @Retention(RetentionPolicy.RUNTIME) // <-- DAS ist wichtig!
+    @Retention(RetentionPolicy.RUNTIME)
     @interface List {
 
         ReferencedBy[] value();

@@ -4,18 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import uni.cs.tradingclient.model.User;
-import uni.cs.tradingclient.persistence.CommunicationHandler;
+import uni.cs.tradingclient.persistence.ReferencedBy;
 
 /**
  *
  * @author lucakoelzsch
  */
-public class UserDAO {
+@ReferencedBy(table = "Portfolio", column = "User_ID")
+public class UserDAO extends AbstractDAO {
 
-    private CommunicationHandler handler;
 
     public UserDAO() {
-        handler = new CommunicationHandler();
     }
 
     public List<User> getAllUsers() {
@@ -59,8 +58,20 @@ public class UserDAO {
     }
 
     public boolean deleteUser(int userId) {
+        if (!canDelete(userId)) return false;
+        
         String sql = "DELETE FROM User WHERE User_ID = ?";
         return handler.executeUpdate(sql, userId);
+    }
+
+    @Override
+    protected String getTableName() {
+        return "Users";
+    }
+
+    @Override
+    protected String getPrimaryKeyColumnName() {
+        return "User_ID";
     }
 
 }
