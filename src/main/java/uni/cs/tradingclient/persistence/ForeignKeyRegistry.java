@@ -19,7 +19,6 @@ public class ForeignKeyRegistry {
         String lookupKeyPrefix = table + ".";
         for (String key : references.keySet()) {
             if (key.startsWith(lookupKeyPrefix)) {
-                // Hier könntest du zusätzlich prüfen, ob das keyValue irgendwo verwendet wird
                 return true;
             }
         }
