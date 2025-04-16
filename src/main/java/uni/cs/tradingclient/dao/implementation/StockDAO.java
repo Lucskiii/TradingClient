@@ -10,7 +10,7 @@ import uni.cs.tradingclient.persistence.ReferencedBy;
  *
  * @author lucakoelzsch
  */
-@ReferencedBy(table = "Transaction", column = "ISIN")
+@ReferencedBy(table = "Transactions", column = "ISIN")
 public class StockDAO extends AbstractDAO {
 
     public StockDAO() {

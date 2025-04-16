@@ -4,13 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import uni.cs.tradingclient.model.Transaction;
-import uni.cs.tradingclient.persistence.ReferencedBy;
 
 /**
  *
  * @author lucakoelzsch
  */
-@ReferencedBy(table = "Transaction", column = "ISIN")
 public class TransactionDAO extends AbstractDAO {
 
 
