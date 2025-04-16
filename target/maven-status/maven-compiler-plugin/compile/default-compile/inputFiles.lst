@@ -1,3 +1,4 @@
+C:\Users\lucak\OneDrive\Dokumente\NetBeansProjects\TradingClient\src\main\java\uni\cs\tradingclient\dao\implementation\AbstractDAO.java
 C:\Users\lucak\OneDrive\Dokumente\NetBeansProjects\TradingClient\src\main\java\uni\cs\tradingclient\dao\implementation\PortfolioDAO.java
 C:\Users\lucak\OneDrive\Dokumente\NetBeansProjects\TradingClient\src\main\java\uni\cs\tradingclient\dao\implementation\StockDAO.java
 C:\Users\lucak\OneDrive\Dokumente\NetBeansProjects\TradingClient\src\main\java\uni\cs\tradingclient\dao\implementation\TransactionDAO.java
@@ -13,3 +14,6 @@ C:\Users\lucak\OneDrive\Dokumente\NetBeansProjects\TradingClient\src\main\java\u
 C:\Users\lucak\OneDrive\Dokumente\NetBeansProjects\TradingClient\src\main\java\uni\cs\tradingclient\model\Transaction.java
 C:\Users\lucak\OneDrive\Dokumente\NetBeansProjects\TradingClient\src\main\java\uni\cs\tradingclient\model\User.java
 C:\Users\lucak\OneDrive\Dokumente\NetBeansProjects\TradingClient\src\main\java\uni\cs\tradingclient\persistence\CommunicationHandler.java
+C:\Users\lucak\OneDrive\Dokumente\NetBeansProjects\TradingClient\src\main\java\uni\cs\tradingclient\persistence\ForeignKeyRegistry.java
+C:\Users\lucak\OneDrive\Dokumente\NetBeansProjects\TradingClient\src\main\java\uni\cs\tradingclient\persistence\ForeignKeyScanner.java
+C:\Users\lucak\OneDrive\Dokumente\NetBeansProjects\TradingClient\src\main\java\uni\cs\tradingclient\persistence\ReferencedBy.java

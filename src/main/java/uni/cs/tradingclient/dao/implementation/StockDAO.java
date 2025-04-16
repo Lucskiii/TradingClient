@@ -4,18 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import uni.cs.tradingclient.model.Stock;
-import uni.cs.tradingclient.persistence.CommunicationHandler;
+import uni.cs.tradingclient.persistence.ReferencedBy;
 
 /**
  *
  * @author lucakoelzsch
  */
-public class StockDAO {
-
-    private CommunicationHandler handler;
+@ReferencedBy(table = "Transactions", column = "ISIN")
+public class StockDAO extends AbstractDAO {
 
     public StockDAO() {
-        handler = new CommunicationHandler();
     }
 
     public List<Stock> getAllStocks() {
@@ -47,17 +45,24 @@ public class StockDAO {
     }
 
     public boolean saveStock(Stock stock) {
-        String sql = "INSERT INTO Stock (ISIN, Name, Value) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO Stocks (ISIN, Name, Value) VALUES (?, ?, ?)";
         return handler.executeUpdate(sql, stock.getISIN(), stock.getName(), stock.getValue());
     }
 
     public boolean updateStock(Stock stock) {
-        String sql = "UPDATE Stock SET Name = ?, Value = ? WHERE ISIN = ?";
+        String sql = "UPDATE Stocks SET Name = ?, Value = ? WHERE ISIN = ?";
         return handler.executeUpdate(sql, stock.getName(), stock.getValue(), stock.getISIN());
     }
 
     public boolean deleteStock(String isin) {
-        String sql = "DELETE FROM Stock WHERE ISIN = ?";
+        if (!canDelete(isin)) return false;
+        System.out.println(canDelete(isin));
+        String sql = "DELETE FROM Stocks WHERE ISIN = ?";
         return handler.executeUpdate(sql, isin);
+    }
+
+    @Override
+    protected String getPrimaryKeyColumnName() {
+        return "ISIN";
     }
 }

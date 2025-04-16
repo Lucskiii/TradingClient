@@ -4,18 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import uni.cs.tradingclient.model.User;
-import uni.cs.tradingclient.persistence.CommunicationHandler;
+import uni.cs.tradingclient.persistence.ReferencedBy;
 
 /**
  *
  * @author lucakoelzsch
  */
-public class UserDAO {
+@ReferencedBy(table = "Portfolio", column = "User_ID")
+public class UserDAO extends AbstractDAO {
 
-    private CommunicationHandler handler;
 
     public UserDAO() {
-        handler = new CommunicationHandler();
     }
 
     public List<User> getAllUsers() {
@@ -49,18 +48,25 @@ public class UserDAO {
     }
 
     public boolean saveUser(User user) {
-        String sql = "INSERT INTO User (Email, IBAN, FirstName, LastName) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO Users (Email, IBAN, FirstName, LastName) VALUES (?, ?, ?, ?)";
         return handler.executeUpdate(sql, user.getEmail(), user.getFirstname(), user.getLastname());
     }
 
     public boolean updateUser(User user) {
-        String sql = "UPDATE User SET Email = ?, IBAN = ?, FirstName = ?, LastName = ? WHERE User_ID = ?";
+        String sql = "UPDATE Users SET Email = ?, IBAN = ?, FirstName = ?, LastName = ? WHERE User_ID = ?";
         return handler.executeUpdate(sql, user.getEmail(), user.getFirstname(), user.getLastname(), user.getUserID());
     }
 
     public boolean deleteUser(int userId) {
-        String sql = "DELETE FROM User WHERE User_ID = ?";
+        if (!canDelete(userId)) return false;
+        
+        String sql = "DELETE FROM Users WHERE User_ID = ?";
         return handler.executeUpdate(sql, userId);
+    }
+
+    @Override
+    protected String getPrimaryKeyColumnName() {
+        return "User_ID";
     }
 
 }

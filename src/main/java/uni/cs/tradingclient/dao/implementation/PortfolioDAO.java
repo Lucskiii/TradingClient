@@ -4,18 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import uni.cs.tradingclient.model.Portfolio;
-import uni.cs.tradingclient.persistence.CommunicationHandler;
+import uni.cs.tradingclient.persistence.ReferencedBy;
 
 /**
  *
  * @author lucakoelzsch
  */
-public class PortfolioDAO {
-
-    private CommunicationHandler handler;
+@ReferencedBy(table = "Transactions", column = "Portfolio_ID")
+public class PortfolioDAO extends AbstractDAO {
 
     public PortfolioDAO() {
-        handler = new CommunicationHandler();
     }
 
     public List<Portfolio> getAllPortfolios() {
@@ -25,7 +23,6 @@ public class PortfolioDAO {
         for (Map<String, Object> map : data) {
             Portfolio portfolio = new Portfolio(
                     (Integer) map.get("Portfolio_ID"),
-                    (Integer) map.get("Transaction_ID"),
                     (Integer) map.get("User_ID")
             );
             portfolios.add(portfolio);
@@ -34,30 +31,36 @@ public class PortfolioDAO {
     }
 
     public Portfolio getPortfolioById(int portfolioID) {
-        List<Map<String, Object>> data = handler.executeQuery("SELECT * FROM Portfolio WHERE Portfolio_ID = ?", portfolioID);
+        List<Map<String, Object>> data = handler.executeQuery("SELECT * FROM Portfolios WHERE Portfolio_ID = ?", portfolioID);
         if (data.isEmpty()) {
             return null;
         }
         Map<String, Object> map = data.get(0);
         return new Portfolio(
                 (Integer) map.get("Portfolio_ID"),
-                (Integer) map.get("Transaction_ID"),
                 (Integer) map.get("User_ID")
         );
     }
 
     public boolean savePortfolio(Portfolio portfolio) {
-        String sql = "INSERT INTO Portfolio (Transaction_ID, User_ID) VALUES (?, ?)";
-        return handler.executeUpdate(sql, portfolio.getTransactionID(), portfolio.getUserID());
+        String sql = "INSERT INTO Portfolios (Transaction_ID, User_ID) VALUES (?, ?)";
+        return handler.executeUpdate(sql, portfolio.getUserID());
     }
 
     public boolean updatePortfolio(Portfolio portfolio) {
-        String sql = "UPDATE Portfolio SET Transaction_ID = ?, User_ID = ? WHERE Portfolio_ID = ?";
-        return handler.executeUpdate(sql, portfolio.getTransactionID(), portfolio.getUserID(), portfolio.getPortfolioID());
+        String sql = "UPDATE Portfolios SET Transaction_ID = ?, User_ID = ? WHERE Portfolio_ID = ?";
+        return handler.executeUpdate(sql, portfolio.getUserID(), portfolio.getPortfolioID());
     }
 
     public boolean deletePortfolio(int portfolioID) {
-        String sql = "DELETE FROM Portfolio WHERE Portfolio_ID = ?";
+        if (!canDelete(portfolioID)) return false;
+        
+        String sql = "DELETE FROM Portfolios WHERE Portfolio_ID = ?";
         return handler.executeUpdate(sql, portfolioID);
+    }
+
+    @Override
+    protected String getPrimaryKeyColumnName() {
+        return "Portfolio_ID";
     }
 }

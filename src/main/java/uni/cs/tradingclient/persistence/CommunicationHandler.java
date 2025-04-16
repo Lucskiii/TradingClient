@@ -90,4 +90,10 @@ public class CommunicationHandler {
         return resultList;
     }
 
+    public Connection getConnection() {
+        return connection;
+    }
+    
+    
+
 }
