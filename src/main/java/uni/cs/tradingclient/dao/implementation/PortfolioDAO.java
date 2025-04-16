@@ -31,7 +31,7 @@ public class PortfolioDAO extends AbstractDAO {
     }
 
     public Portfolio getPortfolioById(int portfolioID) {
-        List<Map<String, Object>> data = handler.executeQuery("SELECT * FROM Portfolio WHERE Portfolio_ID = ?", portfolioID);
+        List<Map<String, Object>> data = handler.executeQuery("SELECT * FROM Portfolios WHERE Portfolio_ID = ?", portfolioID);
         if (data.isEmpty()) {
             return null;
         }
@@ -43,17 +43,19 @@ public class PortfolioDAO extends AbstractDAO {
     }
 
     public boolean savePortfolio(Portfolio portfolio) {
-        String sql = "INSERT INTO Portfolio (Transaction_ID, User_ID) VALUES (?, ?)";
+        String sql = "INSERT INTO Portfolios (Transaction_ID, User_ID) VALUES (?, ?)";
         return handler.executeUpdate(sql, portfolio.getUserID());
     }
 
     public boolean updatePortfolio(Portfolio portfolio) {
-        String sql = "UPDATE Portfolio SET Transaction_ID = ?, User_ID = ? WHERE Portfolio_ID = ?";
+        String sql = "UPDATE Portfolios SET Transaction_ID = ?, User_ID = ? WHERE Portfolio_ID = ?";
         return handler.executeUpdate(sql, portfolio.getUserID(), portfolio.getPortfolioID());
     }
 
     public boolean deletePortfolio(int portfolioID) {
-        String sql = "DELETE FROM Portfolio WHERE Portfolio_ID = ?";
+        if (!canDelete(portfolioID)) return false;
+        
+        String sql = "DELETE FROM Portfolios WHERE Portfolio_ID = ?";
         return handler.executeUpdate(sql, portfolioID);
     }
 

@@ -13,21 +13,29 @@ public class Game {
     
     private UserService userService;
     private StockService stockService;
+    private TransactionService transactionService;
     
     private List<User> users;
     private List<Stock> stocks;
+    private List<Transaction> transactions;
     
     public Game() {
         init();
         
-        
+        //Services
         userService = new UserService();
         stockService = new StockService();
+        transactionService = new TransactionService();
         
+        //Lists
         users = userService.getAllUsers();
         stocks = stockService.getAllStocks();
+        transactions = transactionService.getAllTransactions();
         
-        
+    }
+    
+    public boolean deleteStock(String isin) {
+        return stockService.deleteStock(isin);
     }
     
     private void init() {
@@ -41,5 +49,11 @@ public class Game {
     public List<Stock> getStocks() {
         return stocks;
     }
+
+    public List<Transaction> getTransactions() {
+        return transactions;
+    }
+    
+    
  
 }

@@ -45,17 +45,19 @@ public class StockDAO extends AbstractDAO {
     }
 
     public boolean saveStock(Stock stock) {
-        String sql = "INSERT INTO Stock (ISIN, Name, Value) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO Stocks (ISIN, Name, Value) VALUES (?, ?, ?)";
         return handler.executeUpdate(sql, stock.getISIN(), stock.getName(), stock.getValue());
     }
 
     public boolean updateStock(Stock stock) {
-        String sql = "UPDATE Stock SET Name = ?, Value = ? WHERE ISIN = ?";
+        String sql = "UPDATE Stocks SET Name = ?, Value = ? WHERE ISIN = ?";
         return handler.executeUpdate(sql, stock.getName(), stock.getValue(), stock.getISIN());
     }
 
     public boolean deleteStock(String isin) {
-        String sql = "DELETE FROM Stock WHERE ISIN = ?";
+        if (!canDelete(isin)) return false;
+        
+        String sql = "DELETE FROM Stocks WHERE ISIN = ?";
         return handler.executeUpdate(sql, isin);
     }
 

@@ -48,19 +48,19 @@ public class UserDAO extends AbstractDAO {
     }
 
     public boolean saveUser(User user) {
-        String sql = "INSERT INTO User (Email, IBAN, FirstName, LastName) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO Users (Email, IBAN, FirstName, LastName) VALUES (?, ?, ?, ?)";
         return handler.executeUpdate(sql, user.getEmail(), user.getFirstname(), user.getLastname());
     }
 
     public boolean updateUser(User user) {
-        String sql = "UPDATE User SET Email = ?, IBAN = ?, FirstName = ?, LastName = ? WHERE User_ID = ?";
+        String sql = "UPDATE Users SET Email = ?, IBAN = ?, FirstName = ?, LastName = ? WHERE User_ID = ?";
         return handler.executeUpdate(sql, user.getEmail(), user.getFirstname(), user.getLastname(), user.getUserID());
     }
 
     public boolean deleteUser(int userId) {
         if (!canDelete(userId)) return false;
         
-        String sql = "DELETE FROM User WHERE User_ID = ?";
+        String sql = "DELETE FROM Users WHERE User_ID = ?";
         return handler.executeUpdate(sql, userId);
     }
 

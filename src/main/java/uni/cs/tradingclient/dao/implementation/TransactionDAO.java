@@ -24,8 +24,8 @@ public class TransactionDAO extends AbstractDAO {
                     (Integer) map.get("Transaction_ID"),
                     (Integer) map.get("Portfolio_ID"),
                     (String) map.get("ISIN"),
-                    (Double) map.get("Transaction_Price"),
-                    (Integer) map.get("Quantity_Change")
+                    (Double) map.get("TransactionPrice"),
+                    (Integer) map.get("QuantityChange")
             );
             transactions.add(transaction);
         }
@@ -33,7 +33,7 @@ public class TransactionDAO extends AbstractDAO {
     }
 
     public Transaction getTransactionById(int transactionID) {
-        List<Map<String, Object>> data = handler.executeQuery("SELECT * FROM Transaction WHERE Transaction_ID = ?", transactionID);
+        List<Map<String, Object>> data = handler.executeQuery("SELECT * FROM Transactions WHERE Transaction_ID = ?", transactionID);
         if (data.isEmpty()) {
             return null;
         }
@@ -48,17 +48,19 @@ public class TransactionDAO extends AbstractDAO {
     }
 
     public boolean saveTransaction(Transaction transaction) {
-        String sql = "INSERT INTO Transaction (Portfolio_ID, ISIN, Transaction_Price, Quantity_Change) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO Transactions (Portfolio_ID, ISIN, Transaction_Price, Quantity_Change) VALUES (?, ?, ?, ?)";
         return handler.executeUpdate(sql, transaction.getPortfolioID(), transaction.getISIN(), transaction.getTransactionPrice(), transaction.getQuanityChnge());
     }
 
     public boolean updateTransaction(Transaction transaction) {
-        String sql = "UPDATE Transaction SET Portfolio_ID = ?, ISIN = ?, Transaction_Price = ?, Quantity_Change = ? WHERE Transaction_ID = ?";
+        String sql = "UPDATE Transactions SET Portfolio_ID = ?, ISIN = ?, Transaction_Price = ?, Quantity_Change = ? WHERE Transaction_ID = ?";
         return handler.executeUpdate(sql, transaction.getPortfolioID(), transaction.getISIN(), transaction.getTransactionPrice(), transaction.getQuanityChnge(), transaction.getTransactionID());
     }
 
     public boolean deleteTransaction(int transactionID) {
-        String sql = "DELETE FROM Transaction WHERE Transaction_ID = ?";
+        if (!canDelete(transactionID)) return false;
+        
+        String sql = "DELETE FROM Transactions WHERE Transaction_ID = ?";
         return handler.executeUpdate(sql, transactionID);
     }
 
