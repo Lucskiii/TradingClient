@@ -1,7 +1,12 @@
 package uni.cs.tradingclient.dao.implementation;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
 import uni.cs.tradingclient.persistence.CommunicationHandler;
 import uni.cs.tradingclient.persistence.ForeignKeyRegistry;
+import uni.cs.tradingclient.persistence.ReferencedBy;
 
 /**
  *
@@ -10,7 +15,6 @@ import uni.cs.tradingclient.persistence.ForeignKeyRegistry;
 public abstract class AbstractDAO {
 
     protected CommunicationHandler handler;
-    protected abstract String getTableName();
 
     protected abstract String getPrimaryKeyColumnName();
 
@@ -18,8 +22,6 @@ public abstract class AbstractDAO {
         handler = new CommunicationHandler();
     }
 
-    
-    
     protected boolean canDelete(Object id) {
         String table = getTableName();
         String column = getPrimaryKeyColumnName();
@@ -30,6 +32,14 @@ public abstract class AbstractDAO {
         }
 
         return true;
+    }
+
+    protected String getTableName() {
+        ReferencedBy annotation = this.getClass().getAnnotation(ReferencedBy.class);
+        if (annotation != null) {
+            return annotation.table();
+        }
+        return null;
     }
 
 }

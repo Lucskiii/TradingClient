@@ -65,11 +65,6 @@ public class TransactionDAO extends AbstractDAO {
     }
 
     @Override
-    protected String getTableName() {
-        return "Transactions";
-    }
-
-    @Override
     protected String getPrimaryKeyColumnName() {
         return "Transaction_ID";
     }

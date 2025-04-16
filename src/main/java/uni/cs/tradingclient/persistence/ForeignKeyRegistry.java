@@ -1,18 +1,19 @@
 package uni.cs.tradingclient.persistence;
 
 import java.util.*;
+
 /**
  *
  * @author lucakoelzsch
  */
 public class ForeignKeyRegistry {
-    
-    private static final Map<String, List<Reference>> references = new HashMap<>();
+
+    private static Map<String, List<Reference>> references = new HashMap<>();
 
     public static void registerReference(String table, String column, Class<?> referringClass) {
         String key = table + "." + column;
         references.computeIfAbsent(key, k -> new ArrayList<>())
-                  .add(new Reference(referringClass));
+                .add(new Reference(referringClass));
     }
 
     public static boolean isReferenced(String table, Object keyValue) {
@@ -26,9 +27,12 @@ public class ForeignKeyRegistry {
     }
 
     public static List<Reference> getReferences(String table, String column) {
-        return references.getOrDefault(table + "." + column, Collections.emptyList());
+        String key = table + "." + column;
+        return references.getOrDefault(key, Collections.emptyList());
     }
 
-    public record Reference(Class<?> referencingClass) {}
-    
+    public record Reference(Class<?> referencingClass) {
+
+    }
+
 }

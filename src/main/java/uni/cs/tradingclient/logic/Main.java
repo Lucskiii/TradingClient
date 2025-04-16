@@ -25,12 +25,12 @@ public class Main {
             System.out.println("Aktien in Transaktion: " + transaction.getISIN());
         }
         
-        
-        if (game.deleteStock("DE0005190003")) {
-            System.out.println("BMW gelöscht");
-        } else {
+        try {
+            game.deleteStock("DE0005190003");
+        } catch (Exception e) {
             System.out.println("Löschen fehlgeschlagen");
         }
+       
 
         
     }

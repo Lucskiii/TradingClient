@@ -60,11 +60,6 @@ public class PortfolioDAO extends AbstractDAO {
     }
 
     @Override
-    protected String getTableName() {
-        return "Portfolios";
-    }
-
-    @Override
     protected String getPrimaryKeyColumnName() {
         return "Portfolio_ID";
     }

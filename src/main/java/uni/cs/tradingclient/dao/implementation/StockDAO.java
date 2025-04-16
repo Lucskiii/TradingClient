@@ -56,14 +56,9 @@ public class StockDAO extends AbstractDAO {
 
     public boolean deleteStock(String isin) {
         if (!canDelete(isin)) return false;
-        
+        System.out.println(canDelete(isin));
         String sql = "DELETE FROM Stocks WHERE ISIN = ?";
         return handler.executeUpdate(sql, isin);
-    }
-
-    @Override
-    protected String getTableName() {
-        return "Stocks";
     }
 
     @Override

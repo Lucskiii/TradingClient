@@ -65,11 +65,6 @@ public class UserDAO extends AbstractDAO {
     }
 
     @Override
-    protected String getTableName() {
-        return "Users";
-    }
-
-    @Override
     protected String getPrimaryKeyColumnName() {
         return "User_ID";
     }
